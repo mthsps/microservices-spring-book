@@ -1,20 +1,24 @@
 package microservices.book.multiplication.challenge;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import microservices.book.multiplication.user.User;
+
+import javax.persistence.*;
 
 /**
  * Identifies the attempt from a User to solve a challenge.
  */
-@Getter
-@ToString
-@EqualsAndHashCode
+@Entity
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ChallengeAttempt {
+
+    @Id
+    @GeneratedValue
     private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
     private User user;
     private int factorA;
     private int factorB;
