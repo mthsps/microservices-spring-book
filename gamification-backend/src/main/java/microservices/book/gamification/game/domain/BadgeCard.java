@@ -28,4 +28,7 @@ public class BadgeCard {
         this(null, userId, System.currentTimeMillis(), badgeType);
     }
 
+    public BadgeType getBadgeType() {
+        return badgeType;
+    }
 }
