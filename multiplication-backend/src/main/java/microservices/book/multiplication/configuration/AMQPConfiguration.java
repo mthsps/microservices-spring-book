@@ -12,13 +12,13 @@ public class AMQPConfiguration {
 
     @Bean
     public TopicExchange challengesTopicExchange(
-            @Value("${amqp.exchange.attemps}") final String exchangeName
-    ) {
-        return ExchangeBuilder.topicExchange(exchangeName).durable(true)
-                .build();    }
+            @Value("${amqp.exchange.attempts}") final String exchangeName) {
+        return ExchangeBuilder.topicExchange(exchangeName).durable(true).build();
+    }
 
     @Bean
-    public Jackson2JsonMessageConverter producerJsckson2MessageConverter() {
+    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
+
 }
