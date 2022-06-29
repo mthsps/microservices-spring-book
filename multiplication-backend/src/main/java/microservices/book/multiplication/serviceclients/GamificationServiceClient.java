@@ -1,3 +1,4 @@
+/*
 package microservices.book.multiplication.serviceclients;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,3 +43,4 @@ public class GamificationServiceClient {
 
 }
 
+*/

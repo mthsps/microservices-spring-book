@@ -1,6 +1,5 @@
 package microservices.book.multiplication.challenge;
 
-import microservices.book.multiplication.serviceclients.GamificationServiceClient;
 import microservices.book.multiplication.user.User;
 import microservices.book.multiplication.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,14 +29,14 @@ public class ChallengeServiceTest {
     private ChallengeAttemptRepository attemptRepository;
 
     @Mock
-    private GamificationServiceClient gameClient;
+    private ChallengeEventPub challengeEventPub;
 
     @BeforeEach
     public void setUp() {
         challengeService = new ChallengeServiceImpl(
                 userRepository,
                 attemptRepository,
-                gameClient
+                challengeEventPub
         );
         given(attemptRepository.save(any())).will(returnsFirstArg());
     }
@@ -54,7 +53,7 @@ public class ChallengeServiceTest {
         then(resultAttempt.isCorrect()).isTrue();
         verify(userRepository).save(new User("Alas"));
         verify(attemptRepository).save(resultAttempt);
-        verify(gameClient).sendAttempt(resultAttempt);
+        verify(challengeEventPub).challengeSolved(resultAttempt);
 
     }
 
@@ -90,7 +89,7 @@ public class ChallengeServiceTest {
         then(resultAttempt.getUser()).isEqualTo(existingUser);
         verify(userRepository, never()).save(any());
         verify(attemptRepository).save(resultAttempt);
-        verify(gameClient).sendAttempt(resultAttempt);
+        verify(challengeEventPub).challengeSolved(resultAttempt);
 
     }
 
