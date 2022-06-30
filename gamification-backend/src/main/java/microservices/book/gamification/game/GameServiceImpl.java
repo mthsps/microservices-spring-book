@@ -2,7 +2,7 @@ package microservices.book.gamification.game;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import microservices.book.gamification.challenge.ChallengeSolvedDTO;
+import microservices.book.gamification.challenge.ChallengeSolvedEvent;
 import microservices.book.gamification.badgeprocessors.BadgeProcessor;
 import microservices.book.gamification.game.domain.BadgeCard;
 import microservices.book.gamification.game.domain.BadgeType;
@@ -22,7 +22,7 @@ public class GameServiceImpl implements GameService {
     private final List<BadgeProcessor> badgeProcessors;
 
     @Override
-    public GameResult newAttemptForUser(final ChallengeSolvedDTO challenge) {
+    public GameResult newAttemptForUser(final ChallengeSolvedEvent challenge) {
         if (challenge.isCorrect()) {
             ScoreCard scoreCard = new ScoreCard(challenge.getUserId(), challenge.getAttemptId());
             scoreRepository.save(scoreCard);
@@ -41,7 +41,7 @@ public class GameServiceImpl implements GameService {
         }
     }
 
-    private List<BadgeCard> processForBadges(final ChallengeSolvedDTO solvedChallenge) {
+    private List<BadgeCard> processForBadges(final ChallengeSolvedEvent solvedChallenge) {
         Optional<Integer> optTotalScore = scoreRepository
                 .getTotalScoreForUser(solvedChallenge.getUserId());
         if (optTotalScore.isEmpty()) {
