@@ -16,7 +16,7 @@ public class GameEventHandler {
 
     @RabbitListener(queues = "${amqp.queue.gamification}")
     void handleMultiplicationSolved(final ChallengeSolvedEvent event) {
-        log.info("Challende Solved Event received: {}", event.getAttemptId());
+        log.info("Challenge Solved Event received: {}", event.getAttemptId());
         try {
             gameService.newAttemptForUser(event);
         } catch (final Exception e) {
