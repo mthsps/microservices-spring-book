@@ -6,6 +6,7 @@ import microservices.book.multiplication.user.User;
 import microservices.book.multiplication.user.UserRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Slf4j
@@ -17,6 +18,7 @@ public class ChallengeServiceImpl implements ChallengeService {
     private final ChallengeAttemptRepository attemptRepository;
     private final ChallengeEventPub challengeEventPub;
 
+    @Transactional
     @Override
     public ChallengeAttempt verifyAttempt(ChallengeAttemptDTO attemptDTO) {
 

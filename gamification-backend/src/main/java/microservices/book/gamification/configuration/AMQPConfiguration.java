@@ -34,7 +34,7 @@ public class AMQPConfiguration {
                                          final TopicExchange attemptsExchange) {
         return BindingBuilder.bind(gamificationQueue)
                 .to(attemptsExchange)
-                .with("attemp.correct");
+                .with("attempt.correct");
     }
 
     @Bean

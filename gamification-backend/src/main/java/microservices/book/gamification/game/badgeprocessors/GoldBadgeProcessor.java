@@ -1,4 +1,4 @@
-package microservices.book.gamification.badgeprocessors;
+package microservices.book.gamification.game.badgeprocessors;
 
 import microservices.book.gamification.challenge.ChallengeSolvedEvent;
 import microservices.book.gamification.game.domain.BadgeType;

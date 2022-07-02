@@ -1,6 +1,6 @@
 package microservices.book.gamification.game;
 
-import microservices.book.gamification.badgeprocessors.BadgeProcessor;
+import microservices.book.gamification.game.badgeprocessors.BadgeProcessor;
 import microservices.book.gamification.challenge.ChallengeSolvedEvent;
 import microservices.book.gamification.game.domain.BadgeCard;
 import microservices.book.gamification.game.domain.BadgeType;
